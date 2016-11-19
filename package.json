@@ -1,0 +1,14 @@
+{
+  "name": "home-rest-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "async": "0.2.6",
+    "express": "3.1.0",
+    "sensi": "0.0.3",
+    "ecoplugs": "0.1.1"
+  }
+}
