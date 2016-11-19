@@ -2,15 +2,18 @@
 
 var express = require('express'),
 	path = require('path'),
-	config = require('./config'),
+	cfg = require('./config'),
+	secrets = require('./config-secrets'),
 	async = require('async'),
 	EcoPlugGroup = require('ecoplugs'),
 	Sensi = require('./node-sensi'),
 	app = express();
 
+const config = Object.assign({}, cfg, secrets)
+
 const sensi = new Sensi({
-	username: config.username,
-	password: config.password
+	username: config.sensiUsername,
+	password: config.sensiPassword
 });
 
 const plugs = new EcoPlugGroup(config);
