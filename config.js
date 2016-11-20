@@ -13,4 +13,6 @@ config.plugs = [
   }
 ]
 
+config.garageDoorUrl = "http://192.168.0.177:3000/api/garage/door/";
+
 module.exports = config;

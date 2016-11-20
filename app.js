@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express'),
+	requestProxy = require('express-request-proxy'),
 	path = require('path'),
 	cfg = require('./config'),
 	secrets = require('./config-secrets'),
@@ -61,5 +62,9 @@ app.post("/api/ecoplug/:id", function(req, res) {
 		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
 	}
 });
+
+app.get("/api/garage/door/:id", requestProxy({
+    url: config.garageDoorUrl + ":id",
+}));
 
 app.listen(app.get('port'));
