@@ -67,4 +67,8 @@ app.get("/api/garage/door/:id", requestProxy({
     url: config.garageDoorUrl + ":id",
 }));
 
+app.post("/api/garage/door/:id", requestProxy({
+    url: config.garageDoorUrl + ":id",
+}));
+
 app.listen(app.get('port'));
