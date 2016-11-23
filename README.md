@@ -1,3 +1,4 @@
 # Home REST API
 
-Placeholder text.
+## License
+MIT
