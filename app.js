@@ -71,4 +71,12 @@ app.post("/api/garage/door/:id", requestProxy({
     url: config.garageDoorUrl + ":id",
 }));
 
+app.get("/api/video/0", requestProxy({
+    url: config.cameras[0].url,
+}));
+
+app.get("/api/video/1", requestProxy({
+    url: config.cameras[1].url,
+}));
+
 app.listen(app.get('port'));
