@@ -10,6 +10,26 @@ config.plugs = [
       "name": "Bedroom Lamp",
       "host": "192.168.0.199",
       "id": "ECO-7800D66A"
+  },
+  {
+      "name": "Family Room Lamp 2",
+      "host": "192.168.0.179",
+      "id": "ECO-78055040"
+  },
+  {
+      "name": "Dining Room Lamp",
+      "host": "192.168.0.165",
+      "id": "ECO-78032F08"
+  },
+  {
+      "name": "Cabinet",
+      "host": "192.168.0.166",
+      "id": "ECO-78057FE9"
+  },
+  {
+      "name": "Bedroom Lamp",
+      "host": "192.168.0.176",
+      "id": "ECO-7802CF9B"
   }
 ];
 
