@@ -41,7 +41,7 @@ config.cameras = [
   },
   {
     "name": "Driveway",
-    "url": "http://192.168.0.182:8888/video"
+    "url": "http://192.168.0.193:8888/video"
   }
 ];
 
