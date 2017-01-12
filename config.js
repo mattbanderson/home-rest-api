@@ -33,6 +33,14 @@ config.plugs = [
   }
 ];
 
+config.switches = [
+  {
+    "name": "Dining Room Table",
+    "host": "192.168.0.180",
+    "port": "49153"
+  }
+];
+
 config.garageDoorUrl = "http://192.168.0.177:3000/api/garage/door/";
 config.cameras = [
   {

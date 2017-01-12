@@ -8,6 +8,7 @@ var express = require('express'),
 	async = require('async'),
 	EcoPlugGroup = require('ecoplugs'),
 	Sensi = require('./node-sensi'),
+	wemoGroup = require('./wemo-group'),
 	app = express();
 
 const config = Object.assign({}, cfg, secrets)
@@ -44,6 +45,16 @@ app.get("/api/ecoplug/:id", function(req, res) {
 		});
 	} else {
 		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
+	}
+});
+
+app.get("/api/wemo/:id", function(req, res) {
+	if (config.switches[req.params.id] && wemoGroup[req.params.id]) {
+		wemoGroup[req.params.id].getBinaryState((err, state) => {
+			err ? res.status(500).send(err) : res.json(state !== "0" ? "ON" : "OFF");
+		});
+	} else {
+		res.status(404).send("Wemo Switch " + req.params.id + " could not be found.");
 	}
 });
 
