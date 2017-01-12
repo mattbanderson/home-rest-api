@@ -8,7 +8,7 @@ var express = require('express'),
 	async = require('async'),
 	EcoPlugGroup = require('ecoplugs'),
 	Sensi = require('./node-sensi'),
-	wemoGroup = require('./wemo-group'),
+	WemoGroup = require('./wemo-group'),
 	app = express();
 
 const config = Object.assign({}, cfg, secrets)
@@ -19,6 +19,7 @@ const sensi = new Sensi({
 });
 
 const plugs = new EcoPlugGroup(config);
+const wemos = new WemoGroup();
 
 app.set('port', process.env.PORT || 8080);
 
@@ -49,8 +50,8 @@ app.get("/api/ecoplug/:id", function(req, res) {
 });
 
 app.get("/api/wemo/:id", function(req, res) {
-	if (config.switches[req.params.id] && wemoGroup[req.params.id]) {
-		wemoGroup[req.params.id].getBinaryState((err, state) => {
+	if (config.switches[req.params.id] && wemos.clients[req.params.id]) {
+		wemos.clients[req.params.id].getBinaryState((err, state) => {
 			err ? res.status(500).send(err) : res.json(state !== "0" ? "ON" : "OFF");
 		});
 	} else {

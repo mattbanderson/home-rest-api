@@ -1,24 +1,30 @@
 'use strict';
 
 const Wemo = require('wemo-client');
-
 const wemo = new Wemo();
 
-let clients = [];
+class WemoGroup {
+  constructor() {
+    this.clients = [];
+    wemo.discover(this._getClient.bind(this));
+  }
 
-function getClient(deviceInfo) {
-	console.log('Wemo Device Found: %j', deviceInfo);
+  _getClient(deviceInfo) {
+  	console.log('Wemo Device Found: %j', deviceInfo);
 
-	// Get the client for the found device
-	let client = wemo.client(deviceInfo);
+  	// Get the client for the found device
+  	let client = wemo.client(deviceInfo);
 
-	// Handle BinaryState events
-	client.on('binaryState', function(value) {
-		console.log('Binary State changed to: %s', value);
-	});
-	clients.push(client);
+  	// Handle BinaryState events
+  	client.on('binaryState', function(value) {
+  		console.log('Binary State changed to: %s', value);
+  	});
+  	this.clients.push(client);
+  }
+
+  search() {
+    wemo.discover(this._getClient.bind(this));
+  }
 }
 
-wemo.discover(getClient);
-
-module.exports = clients;
+module.exports = WemoGroup;
