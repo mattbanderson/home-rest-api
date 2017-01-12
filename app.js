@@ -75,6 +75,22 @@ app.post("/api/ecoplug/:id", function(req, res) {
 	}
 });
 
+app.post("/api/wemo/:id", function(req, res) {
+	if (config.switches[req.params.id] && wemos.clients[req.params.id]) {
+		wemos.clients[req.params.id].getBinaryState((err, state) => {
+	  	if (err) {
+				res.status(500).send(err);
+			} else {
+				wemos.clients[req.params.id].setBinaryState(state === "0" ? "1" : "0", (err) => {
+			  	err ? res.status(500).send(err) : res.json("OK");
+				});
+			}
+		});
+	} else {
+		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
+	}
+});
+
 app.get("/api/garage/door/:id", requestProxy({
     url: config.garageDoorUrl + ":id",
 }));
