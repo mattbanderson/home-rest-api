@@ -3,12 +3,12 @@
 var express = require('express'),
 	requestProxy = require('express-request-proxy'),
 	path = require('path'),
-	cfg = require('./config'),
-	secrets = require('./config-secrets'),
+	cfg = require('./config/config'),
+	secrets = require('./config/config-secrets'),
 	async = require('async'),
 	EcoPlugGroup = require('ecoplugs'),
-	Sensi = require('./node-sensi'),
-	WemoGroup = require('./wemo-group'),
+	Sensi = require('./lib/node-sensi'),
+	WemoGroup = require('./lib/wemo-group'),
 	app = express();
 
 const config = Object.assign({}, cfg, secrets)
