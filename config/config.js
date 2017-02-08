@@ -7,7 +7,7 @@ config.plugs = [
       "id": "ECO-780171A6"
   },
   {
-      "name": "Bedroom Lamp",
+      "name": "Living Room Lamp",
       "host": "192.168.0.199",
       "id": "ECO-7800D66A"
   },
