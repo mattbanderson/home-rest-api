@@ -50,12 +50,12 @@ config.switches = [
 config.garageDoorUrl = "http://192.168.0.177:3000/api/garage/door/";
 config.cameras = [
   {
-    "name": "Living Room",
-    "url": "http://192.168.0.187:8888/video"
+    "name": "Duck Cam",
+    "url": "http://192.168.0.195:8080/video"
   },
   {
     "name": "Driveway",
-    "url": "http://192.168.0.193:8888/video"
+    "url": "http://192.168.0.187:8888/video"
   }
 ];
 
