@@ -38,11 +38,13 @@ config.plugs = [
       "id": "ECO-7802CF9B"
   }
 ];
+config.plugsMap = {}
+config.plugs.forEach(p => config.plugsMap[p.name.toLowerCase().split(" ").join("")] = p);
 
 config.switches = [
   {
     "name": "Dining Room Table",
-    "host": "192.168.0.180",
+    "host": "192.168.0.116",
     "port": "49153"
   }
 ];

@@ -39,13 +39,21 @@ app.get("/api/thermostat", function(req, res) {
 	});
 });
 
-app.get("/api/ecoplug/:id", function(req, res) {
-	if (config.plugs[req.params.id]) {
-		plugs.getPowerState(config.plugs[req.params.id], (err, state) => {
-	  	err ? res.status(500).send(err) : res.json(state ? "ON" : "OFF");
+function getPlugState(res, plugsCollection, id) {
+	if (plugsCollection[id]) {
+		plugs.getPowerState(plugsCollection[id], (err, state) => {
+			err ? res.status(500).send(err) : res.json(state ? "ON" : "OFF");
 		});
 	} else {
-		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
+		res.status(404).send("ECOPlug " + id + " could not be found.");
+	}
+}
+
+app.get("/api/ecoplug/:id", function(req, res) {
+	if (isNaN(req.params.id)) {
+		getPlugState(res, config.plugsMap, req.params.id);
+	} else {
+		getPlugState(res, config.plugs, req.params.id);
 	}
 });
 
@@ -59,19 +67,27 @@ app.get("/api/wemo/:id", function(req, res) {
 	}
 });
 
-app.post("/api/ecoplug/:id", function(req, res) {
-	if (config.plugs[req.params.id]) {
-		plugs.getPowerState(config.plugs[req.params.id], (err, state) => {
+function setPlugState(res, plugsCollection, id) {
+	if (plugsCollection[id]) {
+		plugs.getPowerState(plugsCollection[id], (err, state) => {
 	  	if (err) {
 				res.status(500).send(err);
 			} else {
-				plugs.setPowerState(config.plugs[req.params.id], !state, (err) => {
+				plugs.setPowerState(plugsCollection[id], !state, (err) => {
 			  	err ? res.status(500).send(err) : res.json("OK");
 				});
 			}
 		});
 	} else {
 		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
+	}
+}
+
+app.post("/api/ecoplug/:id", function(req, res) {
+	if (isNaN(req.params.id)) {
+		setPlugState(res, config.plugsMap, req.params.id);
+	} else {
+		setPlugState(res, config.plugs, req.params.id);
 	}
 });
 
