@@ -38,7 +38,7 @@ config.plugs = [
       "id": "ECO-7802CF9B"
   }
 ];
-config.plugsMap = {}
+config.plugsMap = {};
 config.plugs.forEach(p => config.plugsMap[p.name.toLowerCase().split(" ").join("")] = p);
 
 config.switches = [
@@ -48,8 +48,11 @@ config.switches = [
     "port": "49153"
   }
 ];
+config.switchesMap = {};
+config.switches.forEach(s => config.switchesMap[s.name.toLowerCase().split(" ").join("")] = s);
 
 config.garageDoorUrl = "http://192.168.0.177:3000/api/garage/door/";
+
 config.cameras = [
   {
     "name": "Duck Cam",
@@ -60,5 +63,7 @@ config.cameras = [
     "url": "http://192.168.0.187:8888/video"
   }
 ];
+config.camerasMap = {};
+config.cameras.forEach(c => config.camerasMap[c.name.toLowerCase().split(" ").join("")] = c);
 
 module.exports = config;

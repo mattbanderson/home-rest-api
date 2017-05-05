@@ -49,8 +49,30 @@ function getPlugState(res, plugsCollection, id) {
 	}
 }
 
+function getSwitchState(res, switchCollection, reqId, clientId) {
+	if (switchCollection[reqId] && wemos.clients[clientId]) {
+		wemos.clients[clientId].getBinaryState((err, state) => {
+			err ? res.status(500).send(err) : res.json(state !== "0" ? "ON" : "OFF");
+		});
+	} else {
+		res.status(404).send("Wemo Switch " + reqId + " could not be found.");
+	}
+}
+
+function getSwitchIndex(id) {
+	let index = 0;
+	for (var i = 0; i < config.switches.length; i++) {
+		if (config.switches[i].name.toLowerCase().split(" ").join("") === id) {
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
+
 app.get("/api/ecoplug/:id", function(req, res) {
 	if (isNaN(req.params.id)) {
+
 		getPlugState(res, config.plugsMap, req.params.id);
 	} else {
 		getPlugState(res, config.plugs, req.params.id);
@@ -58,12 +80,10 @@ app.get("/api/ecoplug/:id", function(req, res) {
 });
 
 app.get("/api/wemo/:id", function(req, res) {
-	if (config.switches[req.params.id] && wemos.clients[req.params.id]) {
-		wemos.clients[req.params.id].getBinaryState((err, state) => {
-			err ? res.status(500).send(err) : res.json(state !== "0" ? "ON" : "OFF");
-		});
+	if (isNaN(req.params.id)) {
+		getSwitchState(res, config.switchesMap, req.params.id, getSwitchIndex(req.params.id));
 	} else {
-		res.status(404).send("Wemo Switch " + req.params.id + " could not be found.");
+		getSwitchState(res, config.switches, req.params.id, req.params.id);
 	}
 });
 
@@ -83,6 +103,22 @@ function setPlugState(res, plugsCollection, id) {
 	}
 }
 
+function setSwitchState(res, switchCollection, reqId, clientId) {
+	if (switchCollection[reqId] && wemos.clients[clientId]) {
+		wemos.clients[clientId].getBinaryState((err, state) => {
+	  	if (err) {
+				res.status(500).send(err);
+			} else {
+				wemos.clients[clientId].setBinaryState(state === "0" ? "1" : "0", (err) => {
+			  	err ? res.status(500).send(err) : res.json("OK");
+				});
+			}
+		});
+	} else {
+		res.status(404).send("ECOPlug " + reqId + " could not be found.");
+	}
+}
+
 app.post("/api/ecoplug/:id", function(req, res) {
 	if (isNaN(req.params.id)) {
 		setPlugState(res, config.plugsMap, req.params.id);
@@ -92,18 +128,10 @@ app.post("/api/ecoplug/:id", function(req, res) {
 });
 
 app.post("/api/wemo/:id", function(req, res) {
-	if (config.switches[req.params.id] && wemos.clients[req.params.id]) {
-		wemos.clients[req.params.id].getBinaryState((err, state) => {
-	  	if (err) {
-				res.status(500).send(err);
-			} else {
-				wemos.clients[req.params.id].setBinaryState(state === "0" ? "1" : "0", (err) => {
-			  	err ? res.status(500).send(err) : res.json("OK");
-				});
-			}
-		});
+	if (isNaN(req.params.id)) {
+		setSwitchState(res, config.switchesMap, req.params.id, getSwitchIndex(req.params.id));
 	} else {
-		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
+		setSwitchState(res, config.switches, req.params.id, req.params.id);
 	}
 });
 
