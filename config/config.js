@@ -20,7 +20,7 @@ config.plugs = [
       "id": "ECO-78055040"
   },
   {
-      "name": "Dining Room Lamp",
+      "name": "Christmas Tree",
       "host": "192.168.0.113",
       "mac": "38:2b:78:03:2f:08",
       "id": "ECO-78032F08"
