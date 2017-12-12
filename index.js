@@ -45,7 +45,7 @@ function getPlugState(res, plugsCollection, id) {
 			err ? res.status(500).send(err) : res.json(state ? "ON" : "OFF");
 		});
 	} else {
-		res.status(404).send("ECOPlug " + id + " could not be found.");
+		res.status(404).send('"ECOPlug ' + id + ' could not be found."');
 	}
 }
 
@@ -55,7 +55,7 @@ function getSwitchState(res, switchCollection, reqId, clientId) {
 			err ? res.status(500).send(err) : res.json(state !== "0" ? "ON" : "OFF");
 		});
 	} else {
-		res.status(404).send("Wemo Switch " + reqId + " could not be found.");
+		res.status(404).send('"Wemo Switch ' + reqId + ' could not be found."');
 	}
 }
 
@@ -99,7 +99,7 @@ function setPlugState(res, plugsCollection, id) {
 			}
 		});
 	} else {
-		res.status(404).send("ECOPlug " + req.params.id + " could not be found.");
+		res.status(404).send('"ECOPlug ' + req.params.id + ' could not be found."');
 	}
 }
 
@@ -115,7 +115,7 @@ function setSwitchState(res, switchCollection, reqId, clientId) {
 			}
 		});
 	} else {
-		res.status(404).send("ECOPlug " + reqId + " could not be found.");
+		res.status(404).send('"ECOPlug ' + reqId + ' could not be found."');
 	}
 }
 
