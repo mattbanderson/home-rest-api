@@ -70,6 +70,27 @@ function getSwitchIndex(id) {
 	return index;
 }
 
+function mapDeviceInfo(devices, newDevices, type) {
+	newDevices.forEach((d, index) => devices.push({
+		"name": d.name,
+		"type": type,
+		"route": "/api/" + type + "/" + index
+	}));
+	return devices;
+}
+
+app.get("/api/devices", function(req, res) {
+	let devices = [];
+	devices = mapDeviceInfo(devices, config.plugs, "ecoplug");
+	devices = mapDeviceInfo(devices, config.switches, "wemo");
+	devices.push({
+		"name": "Garage Door",
+		"type": "garage",
+		"route": "/api/garage/door/1"
+	});
+	res.json(devices);
+});
+
 app.get("/api/ecoplug/:id", function(req, res) {
 	if (isNaN(req.params.id)) {
 
