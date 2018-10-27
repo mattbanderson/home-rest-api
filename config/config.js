@@ -36,6 +36,12 @@ config.plugs = [
       "host": "192.168.0.115",
       "mac": "38:2b:78:02:cf:9b",
       "id": "ECO-7802CF9B"
+  },
+  {
+      "name": "Outdoor 1",
+      "host": "192.168.0.116",
+      "mac": "38:2b:78:04:d7:c8",
+      "id": "ECO-7804D7C8"
   }
 ];
 config.plugsMap = {};
@@ -44,7 +50,7 @@ config.plugs.forEach(p => config.plugsMap[p.name.toLowerCase().split(" ").join("
 config.switches = [
   {
     "name": "Dining Room Table",
-    "host": "192.168.0.116",
+    "host": "192.168.0.120",
     "port": "49153"
   }
 ];
