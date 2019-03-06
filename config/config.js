@@ -20,7 +20,7 @@ config.plugs = [
       "id": "ECO-78055040"
   },
   {
-      "name": "Christmas Tree",
+      "name": "Bedroom Dresser Lamp",
       "host": "192.168.0.113",
       "mac": "38:2b:78:03:2f:08",
       "id": "ECO-78032F08"
@@ -51,7 +51,20 @@ config.switches = [
   {
     "name": "Dining Room Table",
     "host": "192.168.0.120",
-    "port": "49153"
+    "port": "49153",
+    "mac": "14:91:82:4f:03:45"
+  },
+  {
+    "name": "Kitchen Light",
+    "host": "192.168.0.121",
+    "port": "49153",
+    "mac": "24:f5:a2:63:18:55"
+  },
+  {
+    "name": "Everett's Room",
+    "host": "192.168.0.122",
+    "port": "49153",
+    "mac": "24:f5:a2:f5:84:e3"
   }
 ];
 config.switchesMap = {};
