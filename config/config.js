@@ -38,7 +38,7 @@ config.plugs = [
       "id": "ECO-7802CF9B"
   },
   {
-      "name": "Outdoor 1",
+      "name": "Outdoor Lights",
       "host": "192.168.0.116",
       "mac": "38:2b:78:04:d7:c8",
       "id": "ECO-7804D7C8"
