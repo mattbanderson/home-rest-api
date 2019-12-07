@@ -42,6 +42,12 @@ config.plugs = [
       "host": "192.168.0.116",
       "mac": "38:2b:78:04:d7:c8",
       "id": "ECO-7804D7C8"
+  },
+  {
+    "name": "Christmas Tree",
+    "host": "192.168.0.117",
+    "mac": "38:2b:78:04:d2:be",
+    "id": "ECO-7804D2BE"
   }
 ];
 
