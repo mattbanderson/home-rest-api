@@ -65,7 +65,7 @@ config.switches = [
     "mac": "24:f5:a2:63:18:55"
   },
   {
-    "name": "Everett's Room",
+    "name": "Christmas Tree",
     "host": "192.168.0.122",
     "port": "49153",
     "mac": "24:f5:a2:f5:84:e3"
