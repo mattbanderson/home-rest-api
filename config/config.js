@@ -1,11 +1,17 @@
 var config = {};
 
 config.plugs = [
+  // {
+  //     "name": "<Broken>",
+  //     "host": "192.168.0.110",
+  //     "mac": "38:2b:78:01:71:a6",
+  //     "id": "ECO-780171A6"
+  // },
   {
-      "name": "Family Room Lamp",
-      "host": "192.168.0.110",
-      "mac": "38:2b:78:01:71:a6",
-      "id": "ECO-780171A6"
+    "name": "Family Room Lamp",
+    "host": "192.168.0.113",
+    "mac": "38:2b:78:03:2f:08",
+    "id": "ECO-78032F08"
   },
   {
       "name": "Living Room Lamp",
@@ -18,12 +24,6 @@ config.plugs = [
       "host": "192.168.0.112",
       "mac": "38:2b:78:05:50:40",
       "id": "ECO-78055040"
-  },
-  {
-      "name": "Bedroom Dresser Lamp",
-      "host": "192.168.0.113",
-      "mac": "38:2b:78:03:2f:08",
-      "id": "ECO-78032F08"
   },
   {
       "name": "Cabinet",
