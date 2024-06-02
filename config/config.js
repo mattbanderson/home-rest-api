@@ -1,12 +1,12 @@
 var config = {};
 
 config.plugs = [
-  // {
-  //     "name": "<Broken>",
-  //     "host": "192.168.0.110",
-  //     "mac": "38:2b:78:01:71:a6",
-  //     "id": "ECO-780171A6"
-  // },
+  {
+      "name": "Yellow Room",
+      "host": "192.168.0.110",
+      "mac": "38:2b:78:01:71:a6",
+      "id": "ECO-780171A6"
+  },
   {
     "name": "Family Room Lamp",
     "host": "192.168.0.113",
